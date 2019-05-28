@@ -17,16 +17,8 @@ Due to '''type''' function in python, to indicate the type of stat you would lik
 ## Install
 With pip:
 ```
-pip install git+https://github.com/stattleship/stattleship-python
+pip install git+https://github.com/ashleyhansberry/stattleship-python
 ```
-
-Without pip:
-```
-git clone https://github.com/stattleship/stattleship-python.git
-cd /PATH/TO/DIRECTORY/
-sudo python setup.py install
-```
-
 
 ## Getting Started
 Obtain an access TOKEN from [stattleship.com](www.stattleship.com). Load Python and initialize your TOKEN for your session and load the library:
@@ -38,4 +30,6 @@ Token = New_query.set_token('YOUR_TOKEN')
 Output = New_query.ss_get_results(sport='basketball',league='nba',ep='game_logs',player_id='nba-stephen-curry')
 ```
 
+## Getting Results
+Reference the [Developer API](http://developers.stattleship.com) for information on all the types of commands that can be formatted. In general, the sport=, league=, ep= portions of the ss_get_results call correspond to the end portion of the HTTP Request URL. 
 
