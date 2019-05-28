@@ -24,10 +24,9 @@ import stattlepy
 class Stattleship(object):
     
         
-        
         # function to set the token
         def set_token(self, pro_token):        
-                if pro_token is None or not isinstance(pro_token,basestring):
+                if pro_token is None:
                          warnings.warn('Stattleship API token must be provided in order to access the Stattleship API.')
                 else:
                         global token
@@ -50,7 +49,7 @@ class Stattleship(object):
                 param = {}
                 
                 # loop through inputs and 
-                for key, value in kwargs.iteritems():
+                for key, value in kwargs.items():
                         if str(key) == 'sport':
                                 sport = value
                         elif str(key) == 'league':
@@ -72,7 +71,7 @@ class Stattleship(object):
                 
                 ### initial verbose to indicate request occurring
                 if verbose:
-                    print'Making Initial API Request'
+                    print('Making Initial API Request')
                     
                 ### initial query       
                 tmp, return_header = self.query_api(sport, league, ep, param, version, walk, page, verbose, token)
@@ -93,8 +92,8 @@ class Stattleship(object):
                         ### Use try and except to see if the next link was found within the header
                         try:
                             if verbose:
-                                print 'Next link sent to API:'
-                                print next_link[0]
+                                print('Next link sent to API:')
+                                print(next_link[0])
 
                             headers = {
                             'Authorization': token,
@@ -103,7 +102,7 @@ class Stattleship(object):
                             'User-Agent':'Stattleship Python/{} ({})'.format(stattlepy.__version__,platform.platform())
                             }
                             
-                            print headers
+                            print(headers)
 
                             res = requests.get(next_link[0], headers = headers)
 
@@ -119,7 +118,7 @@ class Stattleship(object):
                         except IndexError:
                             break
                         
-                print 'Stattleship API request complete'                
+                print('Stattleship API request complete')                
                 return(response)
             
         def query_api(self, sport, league, ep, param, version, walk, page, verbose, token):
@@ -146,8 +145,8 @@ class Stattleship(object):
                 res = requests.get(url,params=param, headers = headers)
                 
                 if verbose:
-                    print res
-                    print res.url
+                    print(res)
+                    print(res.url)
                 
                 content = json.loads(res.content)
                
